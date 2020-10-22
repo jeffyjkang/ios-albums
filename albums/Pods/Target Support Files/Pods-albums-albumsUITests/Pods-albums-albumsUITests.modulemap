@@ -1,0 +1,6 @@
+framework module Pods_albums_albumsUITests {
+  umbrella header "Pods-albums-albumsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
