@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>969536926808-nmm0v9j3nfjmdq36b1adv6arlh7c9udh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.969536926808-nmm0v9j3nfjmdq36b1adv6arlh7c9udh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCFqWku5kO7o2TT6qfxt0H58BBd72EK98k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>969536926808</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>iosAlbum</string>
+	<key>PROJECT_ID</key>
+	<string>ios-album</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ios-album.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:969536926808:ios:8a061409b02f516b12062d</string>
+	<key>DATABASE_URL</key>
+	<string>https://ios-album.firebaseio.com</string>
+</dict>
+</plist>
