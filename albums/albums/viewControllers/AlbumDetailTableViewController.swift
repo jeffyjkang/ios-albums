@@ -137,10 +137,10 @@ class AlbumDetailTableViewController: UITableViewController, SongTableViewCellDe
     func updateViews() {
         if let album = album {
             title = album.name
-            albumNameTextField.text = album.name
-            artistTextField.text = album.artist
-            genresTextField.text = album.genres.joined(separator: ", ")
-            URLTextField.text = album.coverArt.map {$0.absoluteString}.joined(separator: ", ")
+            albumNameTextField?.text = album.name
+            artistTextField?.text = album.artist
+            genresTextField?.text = album.genres.joined(separator: ", ")
+            URLTextField?.text = album.coverArt.map {$0.absoluteString}.joined(separator: ", ")
             tempSongs = album.songs
         } else {
             title = "New Album"

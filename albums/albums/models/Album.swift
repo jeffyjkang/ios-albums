@@ -45,14 +45,14 @@ struct Album: Codable {
         
         artist = try container.decode(String.self, forKey: .artist)
         
-        var coverArtContainer = try container.nestedUnkeyedContainer(forKey: .coverArt)
-        var url: [URL] = []
-        while coverArtContainer.isAtEnd == false {
-            let urlContainer = try coverArtContainer.nestedContainer(keyedBy: Keys.URLKeys.self)
-            let urlImage = try urlContainer.decode(URL.self, forKey: .url)
+        var coverArtsContainer = try container.nestedUnkeyedContainer(forKey: .coverArt)
+        var url: [String] = []
+        while coverArtsContainer.isAtEnd == false {
+            let urlContainer = try coverArtsContainer.nestedContainer(keyedBy: Keys.URLKeys.self)
+            let urlImage = try urlContainer.decode(String.self, forKey: .url)
             url.append(urlImage)
         }
-        coverArt = url
+        coverArt = url.compactMap {URL(string: $0)}
         
         var genreContainer = try container.nestedUnkeyedContainer(forKey: .genres)
         var genreTypes: [String] = []
@@ -82,11 +82,13 @@ struct Album: Codable {
         
         try container.encode(artist, forKey: .artist)
         
-        var coverArtContainer = container.nestedUnkeyedContainer(forKey: .coverArt)
+        var coverArtsContainer = container.nestedUnkeyedContainer(forKey: .coverArt)
         for coverArtURL in coverArt {
-            _ = coverArtContainer.nestedContainer(keyedBy: Keys.URLKeys.self)
-            try coverArtContainer.encode(coverArtURL.absoluteString)
+            var coverArtContainer = coverArtsContainer.nestedContainer(keyedBy: Keys.URLKeys.self)
+            try coverArtContainer.encode(coverArtURL.absoluteString, forKey: .url)
         }
+        
+        try container.encode(genres, forKey: .genres)
         
         try container.encode(id, forKey: .id)
         

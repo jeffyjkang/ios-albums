@@ -13,26 +13,12 @@ class AlbumsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        albumController.getAlbums { (result) in
-//            if let error = error {
-//                print("Error retrieving albums data: \(error)")
-//                return
-//            }
+        albumController.getAlbums { (_) in
+
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-//            switch result {
-//            case .success(_):
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print("Error fetching albums: \(error)")
-//            }
         }
-//        albumController?.getAlbums(completion: { (result) in
-//            self.tableView.reloadData()
-//        })
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,19 +26,10 @@ class AlbumsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.reloadData()
-//        albumController.getAlbums(completion: { (result) in
-//            switch result {
-//            case .success(_):
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print("Error fetching albums: \(error)")
-//            }
-//        })
     }
 
     // MARK: - Table view data source
@@ -129,6 +106,5 @@ class AlbumsTableViewController: UITableViewController {
             detailVC.album = albumController.albums[indexPath.row]
         }
     }
-
 
 }
