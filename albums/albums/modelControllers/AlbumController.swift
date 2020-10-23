@@ -29,38 +29,39 @@ class AlbumController {
     
     private let baseURL = URL(string: "https://ios-album.firebaseio.com/")!
     
-    func getAlbums(completion: @escaping (Result<[Album], NetworkError>) -> Void) {
+    func getAlbums(completion: @escaping (Error?) -> Void) {
+        
         var request = URLRequest(url: baseURL.appendingPathExtension("json"))
         request.httpMethod = HTTPMethod.get.rawValue
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 print("Error retrieving albums data: \(error)")
-                completion(.failure(.tryAgain))
                 return
             }
             guard let data = data else {
                 print("No data received from getAlbums")
-                completion(.failure(.noData))
                 return
             }
             do {
-                print(data)
                 let albums = try JSONDecoder().decode([String: Album].self, from: data)
-                print(albums)
                 self.albums = albums.map {$0.value}
                 print("Successfully retrieved albums")
+                completion(nil)
             } catch {
                 print("Error decoding albums data: \(error)")
-                completion(.failure(.tryAgain))
             }
         }.resume()
+        
     }
     
     func putAlbums(album: Album) {
         
         let putAlbumURL = baseURL.appendingPathComponent(album.id).appendingPathExtension("json")
+        
         var request = URLRequest(url: putAlbumURL)
         request.httpMethod = HTTPMethod.put.rawValue
+        
         do {
             let jsonData = try JSONEncoder().encode(album)
             request.httpBody = jsonData
@@ -72,6 +73,7 @@ class AlbumController {
         } catch {
             print("Error encoding album: \(error)")
         }
+        
     }
     
     func createAlbum(artist: String, coverArt: [URL], genres: [String], name: String, songs: [Song]) {
